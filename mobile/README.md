@@ -1,6 +1,6 @@
 # 코레일톡 승차권 환승 UX 개선안
 
-기존 프로토타입과 별도로 작성한 모바일 시안이다. 사용자가 제공한 코레일톡 ‘나의 티켓’ 화면을 참고하여 남색 헤더·티켓 탭·승차권 표를 구성하고 환승 안내 카드를 추가했다. [GitHub Pages에서 체험할 수 있다](https://kiwisoop.github.io/ieum-rail-transfer/mobile/).
+현재 배포 버전은 모바일 승차권 중심의 환승 안내 시안이다. 사용자가 제공한 코레일톡 ‘나의 티켓’ 화면을 참고하여 남색 헤더·티켓 탭·승차권 표를 구성하고 환승 안내 카드를 추가했다. [GitHub Pages에서 체험할 수 있다](https://kiwisoop.github.io/ieum-rail-transfer/mobile/).
 
 ## 실행
 
@@ -19,7 +19,7 @@
 
 ## 확인
 
-`node --test mobile/tests.mjs` (저장소 최상위 폴더 기준). 기존 앱 검사는 `node --test tests.mjs`로 별도 실행한다.
+`node --test mobile/tests.mjs` (저장소 최상위 폴더 기준).
 
 참고 화면: 사용자가 제공한 [위키트리 기사](https://www.wikitree.co.kr/articles/1106155)의 ‘좌석변경 승차권 확인’ 캡처. 좌석변경 기록을 환승 승차권으로 해석하지 않았으며, 별도 연결 승차권을 구성했다. 비공식 수업용 개선 시안이고 실제 코레일 앱을 수정한 결과물이 아니다. 구현 도구는 OpenAI Codex다.
 
