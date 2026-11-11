@@ -2,22 +2,24 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0; url=mobile/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#184de4">
   <title>이음 · 환승을 한눈에</title>
-  <link rel="stylesheet" href="styles.css?v=20261103-gap-row">
+  <link rel="stylesheet" href="styles.css?v=20261111-topdown">
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
   <div class="app-shell">
     <aside class="sidebar">
-      <a class="brand" href="#search" aria-label="이음 여정 찾기 홈">
+      <a class="brand" href="#demo" aria-label="이음 내 여정 홈">
         <span class="brand-mark" aria-hidden="true">↗</span><span>이음<span class="brand-dot">.</span></span>
       </a>
-      <p class="brand-description">복잡한 환승도<br>한눈에, 차분하게.</p>
+      <p class="brand-description">오송역 환승 도보 길찾기와<br>시설 방문 시간 계산.</p>
       <nav class="navigation" aria-label="주요 메뉴">
-        <a href="#search" data-nav="search"><span aria-hidden="true">⌕</span> 여정 찾기</a>
-        <a href="#journey" data-nav="journey"><img class="train-nav-icon" src="assets/train.svg" alt="" width="36" height="18"> 내 여정</a>
+        <a href="#demo" data-nav="demo"><img class="train-nav-icon" src="assets/train.svg" alt="" width="36" height="18"> 환승 도보 길찾기</a>
+        <a href="#facilities" data-nav="facilities"><span aria-hidden="true">⌖</span> 층별 지도·시설 사진</a>
+        <a href="#search" data-nav="search"><span aria-hidden="true">⌕</span> 다른 여정 시간표</a>
       </nav>
       <div class="sidebar-footer"><span class="small-label">HUMAN–COMPUTER INTERACTION</span><p>환승정보 UX 개선 프로젝트</p><span class="project-tag">HCI 08 · 비공식 수업용</span></div>
     </aside>
@@ -29,6 +31,6 @@
   </div>
   <div id="announcements" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
   <noscript><p>이 프로토타입은 JavaScript를 켜야 사용할 수 있습니다.</p></noscript>
-  <script type="module" src="app.mjs?v=20261103-centered"></script>
+  <script type="module" src="app.mjs?v=20261111-topdown"></script>
 </body>
 </html>
