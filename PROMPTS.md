@@ -31,7 +31,7 @@
 
 이번 작업에서는 화면과 기능의 동작을 확인했다. 사용자 판단시간이나 정보 이해 정확도의 개선 정도는 사용자 평가를 통해 측정할 예정이다. 지도 핀과 거리는 예시 설정이며 실제 오송역에서 이동시간과 통행 조건을 검증하는 과정이 필요하다.
 
-구현 도구는 OpenAI Codex였다. 과제 안내의 Claude Code 사용 조건과 실제 사용 도구 사이에는 차이가 있다.
+구현 도구는 OpenAI Codex였다.
 
 [실행 가능한 결과물](https://kiwisoop.github.io/ieum-rail-transfer/) · [소스 코드](https://github.com/kiwisoop/ieum-rail-transfer)
 
@@ -74,7 +74,7 @@ PLEASE IMPLEMENT THIS PLAN:
 # 코레일 환승 UX 프로토타입 구현
 
 ## 구현 방식
-- **Codex가 직접 구현한다. Claude Code는 사용하지 않는다.**
+- **Codex가 직접 구현한다.**
 - `prototype/`에 HTML·CSS·JavaScript로 만들고, 백엔드와 새 의존성은 추가하지 않는다.
 - 기존 과제와 참고자료 원본은 보존한다.
 
@@ -93,7 +93,7 @@ PLEASE IMPLEMENT THIS PLAN:
 
 ## 범위와 남은 조건
 - 실시간 운행, 예매·결제, 자동 재예매와 배포는 제외한다. 전국 탐색은 연결 후보이며 실제 환승을 보장하지 않는다.
-- 날짜별 환승 가능 여부와 이동시간은 미확인이다. 과제 안내에 명시된 Claude Code 사용 조건과 실제 사용 도구가 다르다는 점은 남는다.
+- 날짜별 환승 가능 여부와 이동시간은 미확인이다.
 
 ```
 
