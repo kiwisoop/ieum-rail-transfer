@@ -68,3 +68,7 @@ GitHub Pages의 게시 원본은 `codex/initial-publication` 브랜치의 루트
 - [카카오맵 오송역](https://map.kakao.com/link/map/9265313) — 2026-11-03 층별 표시 대조
 
 시간표·시설 사진·지도 캡처 등 외부 자료의 권리는 각 제공자에게 있습니다. 이 저장소는 공식 코레일·카카오 서비스가 아닌 비공식 수업용 프로토타입입니다.
+
+## 디자인 개선 참고
+
+화면의 여백·색상·글자 위계 개선에는 Damir Sokolovsky ([@heydamir](https://x.com/heydamir))의 [unslop](https://github.com/heydamir/unslop) 스킬을 참고했습니다. 스킬은 CC BY 4.0으로 제공됩니다. 기존 기능과 파란색 브랜드를 유지하는 소폭 개선을 적용했습니다.

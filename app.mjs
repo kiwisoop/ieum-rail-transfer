@@ -2,7 +2,7 @@ import { createNetwork, demoState, demoProgress } from './routes.mjs';
 import { osong, facilityGroups, filterFacilities } from './facilities.mjs';
 import { photoMap, handleMapClick } from './photo-map.mjs';
 import { clockTime, todayKST, findJourneys, journeyStatus } from './booking.mjs';
-import { bookingScreen, selectedJourneyScreen, journeyLive } from './booking-ui.mjs?v=20261103-centered';
+import { bookingScreen, selectedJourneyScreen, journeyLive } from './booking-ui.mjs?v=20261111-unslop';
 import { bookingSnapshot, restoreBooking } from './booking-session.mjs';
 
 const main = document.querySelector('#main');
@@ -10,7 +10,7 @@ const state = { delayed: false, movementKnown: false, network: null, loading: tr
   facilityGroup: 'all', facilityFloor: 'all' };
 const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const arrow = '<span aria-hidden="true">↗</span>';
-const heading = (number, title, description) => `<div class="page-heading"><p class="eyebrow">${number} / TRANSFER EXPERIENCE</p><h1>${title}</h1><p>${description}</p></div>`;
+const heading = (number, title, description) => `<div class="page-heading"><p class="eyebrow">${number} / 환승 안내</p><h1>${title}</h1><p>${description}</p></div>`;
 const demoBadge = '<span class="badge badge-blue">가상 여정 체험</span>';
 const booking = { origin: '목포', destination: '울산', date: todayKST(), after: '06:00', routes: null, error: '', visible: 8,
   selected: null, mode: 'live', speed: 1, simAt: null, running: false, delayed: false, activeDemo: false, excludeShort: false };
@@ -29,7 +29,7 @@ function timeComparison() {
 function demoJourney() {
   const { arrival, gap, movement } = demoState(state.delayed, state.movementKnown);
   const progress = demoProgress(state.delayed);
-  return `${heading('01', '내 환승, 한눈에.', '다음 열차와 이동 조건을 한곳에서 확인하세요.')}
+  return `${heading('01', '내 환승, 한눈에', '다음 열차와 이동 조건을 한곳에서 확인하세요.')}
     <section class="card transfer-summary" aria-labelledby="summary-title"><div class="card-top"><h2 id="summary-title">오송역 환승 요약</h2>${demoBadge}</div>
       ${timeComparison()}
       <dl class="summary-facts"><div><dt>다음 열차</dt><dd>가상열차 B · 울산 방면</dd></div><div><dt>다음 승차홈</dt><dd>7번 <small>가상 예시</small></dd></div><div><dt>승차홈 간 이동</dt><dd>${movement === null ? '정보 없음 · 확인 필요' : '예시 약 4분 · 실제 시간 미확인'}</dd></div></dl>
@@ -47,8 +47,8 @@ function demoJourney() {
       <div class="rail-progress time-scaled next-rail" role="img" aria-label="다음 열차 가상열차 B, 오송에서 14시 25분 출발하여 울산까지 가는 구간입니다. 탑승 전이며 울산 도착시각과 중간 정차역은 미설정입니다."><div class="rail-track"></div><div class="rail-stop" style="left:var(--rail-inset)"><span>14:25 출발</span><i></i><strong>오송</strong></div><div class="rail-stop" style="left:calc(100% - var(--rail-inset))"><span>도착시각 미설정</span><i></i><strong>울산</strong></div><span class="next-train-status">가상열차 B · 탑승 전</span></div>
       <p class="data-note">열차·현재 시각·진행상태·승차홈은 과제용 가상 설정입니다. 울산 도착시각은 설정하지 않았습니다.</p>
     </section>
-    <aside class="journey-aside"><section class="card"><span class="small-label">오송역에서 필요한 곳</span><h2 class="aside-title">시설 위치와 사진도<br>함께 확인하세요.</h2><p class="muted small">편의점·약국·수유방 등의 공식 안내를 모았어요. 방문에 필요한 왕복 이동·대기시간은 미확인입니다.</p><a class="button outline wide" href="#facilities">오송역 편의시설·사진 ${arrow}</a></section>
-    <section class="explore-card"><span class="small-label">EXPLORE THE NETWORK</span><h2>다른 여정은<br>어떻게 연결될까요?</h2><p>실제 시간표의 전국 정차정보로 연결 후보를 찾아보세요.</p><a href="#search" class="button outline">여정 찾기 ${arrow}</a></section></aside></div>
+    <aside class="journey-aside"><section class="card"><span class="small-label">오송역에서 필요한 곳</span><h2 class="aside-title">시설 위치와 사진도<br>함께 확인하세요</h2><p class="muted small">편의점·약국·수유방 등의 공식 안내를 모았어요. 방문에 필요한 왕복 이동·대기시간은 미확인입니다.</p><a class="button outline wide" href="#facilities">오송역 편의시설·사진 ${arrow}</a></section>
+    <section class="explore-card"><span class="small-label">다른 구간 찾기</span><h2>다른 여정은<br>어떻게 연결될까요?</h2><p>실제 시간표의 전국 정차정보로 연결 후보를 찾아보세요.</p><a href="#search" class="button outline">여정 찾기 ${arrow}</a></section></aside></div>
     <p class="sr-only" role="status">${state.delayed ? '시각 차이가 10분 줄었습니다.' : '정상 상황입니다.'} 오송 도착 예정 ${arrival}, 다음 열차 출발 14:25, 시각 차이 ${gap}분. 이동시간 ${movement === null ? '정보 없음' : '예시 4분'}.</p>`;
 }
 
@@ -58,13 +58,13 @@ function transfer() {
     return `<a class="back-link" href="#journey">← 내 여정으로 돌아가기</a>${heading('02', route.transfer ? `${escape(route.transfer)}에서 갈아타요.` : '직통 여정이에요.', '선택한 열차의 정보와 확인해야 할 이동 조건입니다.')}<section class="card selected-transfer-detail"><span class="badge badge-blue">선택한 여정 · 시간표 기준</span>${route.transfer ? `<div class="scheduled-transfer"><div><span>첫 열차 시간표 시각</span><strong>${clockTime(status.legs[0].end)}</strong></div><span>→</span><div><span>다음 열차 시간표 시각</span><strong>${clockTime(status.legs[1].start)}</strong></div><div><span>환승 간격 (약)</span><strong>${Math.round(status.gap)}분</strong></div></div><p>${escape(route.legs[0].type)} ${escape(route.legs[0].train)} → ${escape(route.legs[1].type)} ${escape(route.legs[1].train)}</p><p class="${status.missed ? 'form-error' : 'muted small'}">${status.missed ? '다음 열차가 먼저 출발합니다. 연결을 다시 확인하세요.' : '시간표 정차시각의 차이이며 실제 환승 가능 여부는 미확인입니다.'}</p><dl class="summary-facts"><div><dt>승차홈 · 가상 예시</dt><dd>3번 → 7번</dd></div><div><dt>이동시간 · 가상 예시</dt><dd>약 4분</dd></div></dl><p class="muted small">아래 승차홈·이동시간·경로는 체험용 가상 설정입니다. 실제 역 구조나 선택한 열차의 승차홈을 확인한 정보는 아닙니다.</p><div class="platform-path" aria-label="가상 환승 이동 경로"><div><span>01</span><strong>3번 승차홈</strong><small>첫 열차에서 내리기</small></div><span class="path-arrow" aria-hidden="true">↓</span><div><span>02</span><strong>환승 통로로 이동</strong><small>7번 승차홈 방향으로 이동하기</small></div><span class="path-arrow" aria-hidden="true">↓</span><div><span>03</span><strong>7번 승차홈</strong><small>다음 열차 번호 확인 후 탑승하기</small></div></div>` : '<p>선택한 열차로 도착역까지 이어집니다.</p>'}${route.transfer === '오송' ? '<a class="button outline wide" href="#facilities">오송역 편의시설·사진 →</a>' : ''}<a class="button primary wide" href="#journey">내 여정으로 돌아가기 →</a></section>`;
   }
   const { gap } = demoState(state.delayed);
-  return `<a class="back-link" href="${booking.activeDemo ? '#demo' : '#journey'}">← 여정으로 돌아가기</a>${heading('02', '갈아타기 전에 확인해요.', '시간 차이와 이동에 필요한 정보를 나누어 살펴보세요.')}${scenarioControls()}
+  return `<a class="back-link" href="${booking.activeDemo ? '#demo' : '#journey'}">← 여정으로 돌아가기</a>${heading('02', '갈아타기 전 확인', '시간 차이와 이동에 필요한 정보를 나누어 살펴보세요.')}${scenarioControls()}
     <div class="detail-layout"><section class="card"><div class="card-top">${demoBadge}<span class="muted small">오송역 환승</span></div><h2 class="detail-title">3번 승차홈 <span aria-hidden="true">→</span> 7번 승차홈</h2><p class="muted small">승차홈 번호와 아래 이동 순서는 가상 예시입니다.</p>
     <div class="platform-path"><div><span>01</span><strong>3번 승차홈</strong><small>현재 열차에서 내리기</small></div><span class="path-arrow" aria-hidden="true">↓</span><div><span>02</span><strong>통로로 이동</strong><small>역 안내판에서 방향 확인</small></div><span class="path-arrow" aria-hidden="true">↓</span><div><span>03</span><strong>7번 승차홈</strong><small>다음 열차 정보 재확인</small></div></div>
     <div class="movement-heading"><h3>예상 이동시간</h3><span class="badge badge-neutral">체험 조건</span></div><div class="segmented movement-options"><button data-action="unknown" aria-pressed="${!state.movementKnown}">정보 없음</button><button data-action="known" aria-pressed="${state.movementKnown}">예시 4분 제공</button></div>
     <div class="movement-panel ${state.movementKnown ? 'known' : ''}"><span class="movement-symbol" aria-hidden="true">${state.movementKnown ? '↗' : '?'}</span><div><strong>${state.movementKnown ? '예상 이동시간 약 4분' : '이동시간 정보 없음'}</strong><p>${state.movementKnown ? '일반 보행을 가정한 가상 값입니다. 이동속도·동선·혼잡에 따라 달라질 수 있어요.' : '추가 확인이 필요해요. 역 안내판이나 역 직원에게 승차홈과 이동 동선을 확인해 보세요.'}</p></div></div>
     <a class="button outline wide facility-entry" href="#facilities">오송역 편의시설·사진 보기 ${arrow}</a><a class="button primary wide" href="${booking.activeDemo ? '#demo' : '#journey'}">여정으로 돌아가기 ${arrow}</a></section>
-    <aside><section class="card compact-time"><h2>현재 시간 조건</h2>${timeComparison()}</section><section class="card facility-card"><span class="small-label">ONE MORE THING</span><h2>화장실·편의점에<br>들르고 싶다면?</h2><p>시각 차이 ${gap}분 외에도 다음 정보가 필요해요.</p><ul class="checklist"><li>다음 승차홈까지 이동시간</li><li>시설의 위치와 왕복 이동시간</li><li>예상 대기시간과 이용시간</li></ul><p class="facility-note">일부 시설의 위치·사진을 확인할 수 있어요. 왕복 이동·대기시간은 미확인입니다.</p></section></aside></div><p class="sr-only" role="status">${state.movementKnown ? '이동시간 예시 4분이 제공됩니다. 실제 이동시간은 다를 수 있습니다.' : '이동시간 정보 없음. 추가 확인이 필요합니다.'}</p>`;
+    <aside><section class="card compact-time"><h2>현재 시간 조건</h2>${timeComparison()}</section><section class="card facility-card"><span class="small-label">시설 이용 전 확인</span><h2>화장실·편의점에<br>들르고 싶다면?</h2><p>시각 차이 ${gap}분 외에도 다음 정보가 필요해요.</p><ul class="checklist"><li>다음 승차홈까지 이동시간</li><li>시설의 위치와 왕복 이동시간</li><li>예상 대기시간과 이용시간</li></ul><p class="facility-note">일부 시설의 위치·사진을 확인할 수 있어요. 왕복 이동·대기시간은 미확인입니다.</p></section></aside></div><p class="sr-only" role="status">${state.movementKnown ? '이동시간 예시 4분이 제공됩니다. 실제 이동시간은 다를 수 있습니다.' : '이동시간 정보 없음. 추가 확인이 필요합니다.'}</p>`;
 }
 
 function facilityCard(item) {
@@ -75,7 +75,7 @@ function facilities() {
   const items = filterFacilities(state.facilityGroup, state.facilityFloor);
   const selectedAtOsong = booking.selected?.transfer === '오송' && !booking.activeDemo;
   const gap = selectedAtOsong ? Math.round(journeyStatus(booking.selected, journeyTime(), booking.delayed).gap) : booking.selected && !booking.activeDemo ? null : demoState(state.delayed).gap;
-  return `<a class="back-link" href="#transfer">← 환승 상세로 돌아가기</a>${heading('04', '오송역에서 필요한 곳.', '층별 안내도에서 필요한 시설을 찾아보세요.')}
+  return `<a class="back-link" href="#transfer">← 환승 상세로 돌아가기</a>${heading('04', '오송역에서 필요한 곳', '층별 안내도에서 필요한 시설을 찾아보세요.')}
     ${photoMap()}
     <section class="station-context"><div><span class="badge badge-blue">오송역 · 시설 안내</span><p>안내도 위치 참고 2026-11-03 · 공식 자료 ${osong.checkedAt} · 현장 운영상태는 다를 수 있어요.</p></div><div class="context-time"><span>${selectedAtOsong ? '선택한 여정의 시각 차이 (약)' : '고정 예시의 시각 차이'}</span><strong>${gap === null ? '—' : gap}<small>${gap === null ? '다른 역 여정' : '분'}</small></strong><a href="#transfer">시간 조건 확인 →</a></div></section>
     <div class="inline-info facility-intro"><span aria-hidden="true">ⓘ</span><p>역 안내도는 카카오맵을 참고해 직접 그린 개략도, 아래 시설 자료는 코레일 안내를 바탕으로 했어요. 승차홈에서의 실제 경로·왕복 이동시간·대기시간은 확인되지 않아 방문 가능 여부는 판단하지 않아요.</p></div>
@@ -188,7 +188,7 @@ main.addEventListener('click', event => {
   if (photoButton) {
     const item = osong.facilities.find(f => f.id === photoButton.dataset.photo);
     if (!item?.photoUrl) return;
-    document.querySelector('#photo-content').innerHTML = `<p class="eyebrow">OSONG STATION · OFFICIAL PHOTO</p><h2 id="photo-title">${escape(item.name)}</h2><p class="photo-location">${escape(item.location)}</p><div class="facility-photo-image"><img src="${escape(item.photoUrl)}" alt="코레일 오송역 공식 안내에 수록된 ${escape(item.name)} 시설 사진" referrerpolicy="no-referrer"><p class="photo-fallback" hidden>사진을 불러오지 못했어요. 아래 원본 링크에서 확인해 주세요.</p></div><p class="photo-caption">출처: 코레일 오송역 층별 시설안내 · 촬영일 미제공<br>시설 확인용 사진이며 승차홈부터의 연속 이동경로 사진은 아닙니다. 일부 원본은 저해상도입니다.</p><a class="text-link" href="${escape(item.photoUrl)}" target="_blank" rel="noopener noreferrer">공식 사진 원본 열기 ↗</a>`;
+    document.querySelector('#photo-content').innerHTML = `<p class="eyebrow">오송역 · 공식 시설 사진</p><h2 id="photo-title">${escape(item.name)}</h2><p class="photo-location">${escape(item.location)}</p><div class="facility-photo-image"><img src="${escape(item.photoUrl)}" alt="코레일 오송역 공식 안내에 수록된 ${escape(item.name)} 시설 사진" referrerpolicy="no-referrer"><p class="photo-fallback" hidden>사진을 불러오지 못했어요. 아래 원본 링크에서 확인해 주세요.</p></div><p class="photo-caption">출처: 코레일 오송역 층별 시설안내 · 촬영일 미제공<br>시설 확인용 사진이며 승차홈부터의 연속 이동경로 사진은 아닙니다. 일부 원본은 저해상도입니다.</p><a class="text-link" href="${escape(item.photoUrl)}" target="_blank" rel="noopener noreferrer">공식 사진 원본 열기 ↗</a>`;
     document.querySelector('#facility-photo').showModal();
     return;
   }
