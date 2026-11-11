@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#095278">
+  <title>나의 티켓 · 환승 UX 개선안</title>
+  <link rel="stylesheet" href="styles.css?v=20261112-compare-14">
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 건너뛰기</a>
+  <div class="phone">
+    <div class="prototype-strip">코레일톡 UX 개선안 <span>비공식 · 가상 승차권</span></div>
+    <header class="app-header"><button id="back" aria-label="이전 화면" hidden>‹</button><h1 id="title">나의 티켓</h1><button id="help" aria-label="체험 안내">☰</button></header>
+    <main id="main" tabindex="-1"></main>
+  </div>
+  <div id="announcements" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  <dialog id="guide" aria-labelledby="guide-title"><h2 id="guide-title">환승 안내를 체험해보세요</h2><p>목포 → 오송 → 부산의 가상 승차권이에요. 승차권 아래 환승 카드에서 이동 상황을 확인하고, 시설에 들르는 경로를 비교해보세요.</p><p>열차 시각·승차홈·거리·시설 이용시간은 가상 설정이에요. 위치 추적이나 실제 발권 기능은 없어요.</p><form method="dialog"><button class="primary">확인했어요</button></form></dialog>
+  <dialog id="facility-photo-dialog" class="facility-photo-dialog" aria-labelledby="facility-photo-title"><h2 id="facility-photo-title">시설 사진</h2><img alt=""><form method="dialog"><button class="primary">닫기</button></form></dialog>
+  <noscript>JavaScript를 켜면 승차권과 환승 안내를 체험할 수 있어요.</noscript>
+  <script type="module" src="app.mjs?v=20261112-compare-14"></script>
+</body>
+</html>
