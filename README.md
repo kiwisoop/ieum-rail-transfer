@@ -4,7 +4,11 @@
 
 목포에서 부산으로 가는 승객이 첫 열차 안에서 승차권을 열면 오송 도착 예정시각, 다음 열차의 출발시각과 승차홈을 함께 확인하는 모바일 웹 프로토타입입니다. 휴먼컴퓨터인터페이스 과제 08이며, 승차권·지연 상황·시설 정보는 가상의 체험 자료입니다.
 
-![모바일 승차권 화면: 목포 → 오송 승차권과 오송 환승 안내](assets/screenshots/website.png)
+<p align="center">
+  <img src="assets/screenshots/website.png" alt="나의 티켓 화면: 목포 → 오송 승차권과 오송 환승 안내" width="320">
+  <img src="assets/screenshots/transfer.png" alt="환승 안내 화면: 오송 도착 14:10, 다음 열차 출발 14:25, 환승 간격 15분" width="320">
+</p>
+<p align="center"><sub>왼쪽: 나의 티켓 · 오른쪽: 환승 안내</sub></p>
 
 ## 실행
 
