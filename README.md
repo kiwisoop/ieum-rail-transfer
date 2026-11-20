@@ -7,8 +7,9 @@
 <p align="center">
   <img src="assets/screenshots/website.png" alt="나의 티켓 화면: 목포 → 오송 승차권과 오송 환승 안내" width="320">
   <img src="assets/screenshots/transfer.png" alt="환승 안내 화면: 오송 도착 14:10, 다음 열차 출발 14:25, 환승 간격 15분" width="320">
+  <img src="assets/screenshots/facilities.png" alt="시설 경유 안내 화면: 바로 환승 도보 약 4분과 시설별 추가 소요시간" width="320">
 </p>
-<p align="center"><sub>왼쪽: 나의 티켓 · 오른쪽: 환승 안내</sub></p>
+<p align="center"><sub>나의 티켓 · 환승 안내 · 시설 경유 안내</sub></p>
 
 ## 실행
 
